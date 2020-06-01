@@ -17,20 +17,21 @@ try:
 except requests.exceptions.ConnectionError:
     print("Please verify your internet connection")
 
+#Capture JSON data for specified city
 
-# Capture JSON data for specified city
-
-#
-# weather_request = requests.get(get_weather)
-# json = weather_request.json()
+weather_request = requests.get(get_weather)
+json = weather_request.json()
 # print(json)
 
-# r = requests.get('https://www.metaweather.com/api/location/2455920')
-# text = r.json()
-# for value in text['consolidated_weather']:
-#     humidity = (value['humidity'])
-#     date = (value['applicable_date'])
-#     print(f'{date}\tHumidity: {humidity}')
+for value in json['consolidated_weather']:
+    min_temp = (value['min_temp'])
+    min_temp = format(min_temp * 1.8 + 32, '.0f')
+    max_temp = (value['max_temp'])
+    max_temp = format(max_temp * 1.8 + 32, '.0f')
+    humidity = (value['humidity'])
+    date = (value['applicable_date'])
+    print(f'{date}\tHumidity: {humidity}\t Low Temp: {min_temp}'
+    f'\t High Temp: {max_temp}')
 
 # import requests
 # r = requests.get("Programming rocks my socks.")
